@@ -7,26 +7,27 @@ const LoginPage = () => {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!username.trim()) return alert("Username kiritish shart!");
+  if (!auth) return null;
 
-    auth?.login(username);
+  const handleLogin = () => {
+    if (!username.trim()) {
+      alert("Username kiritish shart!");
+      return;
+    }
+    auth.login(username);
     navigate("/profile");
   };
 
   return (
     <div>
       <h1>🔑 Login Page</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username kiriting..."
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <button type="submit">Kirish</button>
-      </form>
+      <input
+        type="text"
+        placeholder="Username kiriting"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };
