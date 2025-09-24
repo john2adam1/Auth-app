@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const auth = useContext(AuthContext);
@@ -14,6 +15,12 @@ const ProfilePage = () => {
       ) : (
         <p>Hech qanday foydalanuvchi login qilmagan</p>
       )}
+
+      {/* Ortga tugma */}
+      <br />
+      <Link to="/">
+        <button>⬅️ Ortga (Home Page)</button>
+      </Link>
     </div>
   );
 };
